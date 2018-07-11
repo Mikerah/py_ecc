@@ -1,24 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from setuptools import setup, find_packages
-
-
-with open('README.md') as f:
-    readme = f.read()
-
-with open('LICENSE') as f:
-    license = f.read()
+from distutils.core import setup
+from Cython.Build import cythonize
 
 setup(
-    name='py_ecc',
-    version='1.4.2',
-    description='Elliptic curve crypto in python including secp256k1 and alt_bn128',
-    long_description=readme,
-    author='Vitalik Buterin',
-    author_email='',
-    url='https://github.com/ethereum/py_ecc',
-    license=license,
-    packages=find_packages(exclude=('tests', 'docs')),
-    install_requires=[
-    ],
+    name="py_ecc",
+    ext_modules=cythonize("py_ecc/cython_src/*.pyx")
 )
